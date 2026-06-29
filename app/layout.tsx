@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import { Rubik, Poppins, Cormorant_Garamond } from "next/font/google";
+import { Space_Grotesk, Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
+const display = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
 });
-const poppins = Poppins({
-  variable: "--font-poppins",
+const body = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
 });
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const mono = Space_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${rubik.variable} ${poppins.variable} ${cormorant.variable} antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable} antialiased`}
     >
       <body>
         <SmoothScroll>{children}</SmoothScroll>

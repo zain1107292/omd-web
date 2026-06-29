@@ -35,10 +35,10 @@ export default function Services() {
       <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
         <div>
           <span className="eyebrow">Our services</span>
-          <h2 className="mt-4 font-[family-name:var(--font-rubik)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(34px,5.4vw,84px)]">
+          <h2 className="mt-4 font-[family-name:var(--font-display)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(34px,5.4vw,84px)]">
             Everything,
             <br />
-            <em className="font-[family-name:var(--font-cormorant)] not-italic italic font-medium text-[var(--terra)]">
+            <em className="font-[family-name:var(--font-display)] font-medium text-[var(--terra)]">
               under one roof.
             </em>
           </h2>
@@ -56,10 +56,10 @@ export default function Services() {
             href="#contact"
             className="svc-row group grid grid-cols-[44px_1fr] md:grid-cols-[60px_minmax(0,1.1fr)_minmax(0,1.4fr)_40px] items-center gap-x-5 gap-y-1 py-7 border-b border-[var(--line)] transition-colors hover:bg-[rgba(244,122,87,0.04)]"
           >
-            <span className="font-[family-name:var(--font-rubik)] text-[var(--copper)] text-sm">
+            <span className="font-[family-name:var(--font-display)] text-[var(--copper)] text-sm">
               {sv.n}
             </span>
-            <h3 className="font-[family-name:var(--font-rubik)] font-semibold text-[clamp(20px,2.6vw,38px)] leading-tight transition-transform duration-500 group-hover:translate-x-2 group-hover:text-[var(--terra)]">
+            <h3 className="font-[family-name:var(--font-display)] font-semibold text-[clamp(20px,2.6vw,38px)] leading-tight transition-transform duration-500 group-hover:translate-x-2 group-hover:text-[var(--terra)]">
               {sv.title}
             </h3>
             <p className="col-span-2 md:col-span-1 text-[var(--muted)] text-sm font-light leading-relaxed max-w-[460px]">

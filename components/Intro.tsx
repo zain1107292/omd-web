@@ -39,7 +39,7 @@ export default function Intro() {
       className="relative px-[clamp(22px,5vw,72px)] py-[clamp(90px,16vh,200px)] grain"
     >
       <span className="eyebrow">What we do</span>
-      <p className="mt-8 max-w-[20ch] sm:max-w-[26ch] font-[family-name:var(--font-rubik)] font-semibold leading-[1.08] tracking-[-0.02em] text-[clamp(28px,4.6vw,68px)]">
+      <p className="mt-8 max-w-[20ch] sm:max-w-[26ch] font-[family-name:var(--font-display)] font-semibold leading-[1.08] tracking-[-0.02em] text-[clamp(28px,4.6vw,68px)]">
         {STATEMENT.split(" ").map((w, i) => (
           <span
             key={i}

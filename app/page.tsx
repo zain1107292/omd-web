@@ -16,9 +16,9 @@ export default function Home() {
         className="relative px-[clamp(22px,5vw,72px)] py-[clamp(90px,18vh,220px)] border-t border-[var(--line)] text-center grain"
       >
         <span className="eyebrow">Let&apos;s build</span>
-        <h2 className="mx-auto mt-6 max-w-[18ch] font-[family-name:var(--font-rubik)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(40px,7vw,110px)]">
+        <h2 className="mx-auto mt-6 max-w-[18ch] font-[family-name:var(--font-display)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(40px,7vw,110px)]">
           Ready to shape your{" "}
-          <em className="font-[family-name:var(--font-cormorant)] italic font-medium text-[var(--terra)]">
+          <em className="font-[family-name:var(--font-display)] font-medium text-[var(--terra)]">
             dream space
           </em>
           ?

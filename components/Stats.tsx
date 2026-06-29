@@ -47,7 +47,7 @@ export default function Stats() {
       <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
         {STATS.map((st) => (
           <div key={st.label} className="stat-col">
-            <div className="font-[family-name:var(--font-rubik)] font-extrabold leading-none text-[clamp(40px,6vw,80px)]">
+            <div className="font-[family-name:var(--font-display)] font-extrabold leading-none text-[clamp(40px,6vw,80px)]">
               <span className="stat-num" data-v={st.v}>
                 0
               </span>

@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0b0807;
-  --ink-2: #14100d;
-  --cream: #f5ece4;
-  --muted: #a99a8e;
+  --ink: #14110d;
+  --ink-2: #1c1814;
+  --cream: #ece3d8;
+  --muted: #9a8d7e;
   --terra: #f47a57;
   --terra-2: #ff9a78;
   --copper: #c98a3c;
-  --line: rgba(245, 236, 228, 0.12);
+  --sage: #8a9a82;
+  --line: rgba(236, 227, 216, 0.13);
 }
 
 @theme inline {
   --color-ink: var(--ink);
   --color-cream: var(--cream);
   --color-terra: var(--terra);
-  --font-rubik: var(--font-rubik);
-  --font-poppins: var(--font-poppins);
-  --font-cormorant: var(--font-cormorant);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 * {
@@ -29,12 +30,11 @@ html {
 body {
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Lenis */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -46,13 +46,10 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* selection */
 ::selection {
   background: var(--terra);
   color: #1c0e07;
 }
-
-/* branded scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
 }
@@ -60,23 +57,21 @@ html.lenis body {
   background: var(--ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--terra), var(--copper));
+  background: var(--terra);
   border-radius: 999px;
 }
 
-/* film grain */
 .grain::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.04;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* utility: kinetic line mask */
 .line-mask {
   display: block;
   overflow: hidden;
@@ -87,16 +82,11 @@ html.lenis body {
   will-change: transform;
 }
 
+/* mono blueprint-style label — grounded in design+build/architecture */
 .eyebrow {
+  font-family: var(--font-mono), monospace;
   font-size: 11px;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--terra);
-  font-weight: 500;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lenis.lenis-smooth {
-    scroll-behavior: smooth !important;
-  }
 }
