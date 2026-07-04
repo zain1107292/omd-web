@@ -482,3 +482,10 @@ export const KUULA_PROJECTS: KuulaProject[] = [
 export function kuulaEmbed(id: string, opts = "logo=0&info=1&fs=1&vr=1&autorotate=0.25&thumbs=1") {
   return `https://kuula.co/share/collection/${id}?${opts}`;
 }
+
+// Extra individual 360° panoramas found embedded on the Wix before/after page
+// (not in the profile collections — used for the before/after slider). Untitled.
+export const KUULA_EXTRA_TOURS: string[] = ["hLJfQ", "hDmNF", "hx1YB", "h3Z8J", "hSS8W"];
+export function kuulaTourEmbed(id: string, opts = "logo=0&info=1&fs=1&vr=1&autorotate=0.25") {
+  return `https://kuula.co/share/${id}?${opts}`;
+}
