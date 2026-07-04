@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Space_Mono } from "next/font/google";
+import { Archivo, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const display = Space_Grotesk({
+const display = Archivo({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
-const body = Inter({
+const body = Hanken_Grotesk({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 const mono = Space_Mono({
   variable: "--font-mono",
@@ -20,9 +20,9 @@ const mono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OutMazed® Design — Interior & Exterior Design + Build, Dubai",
+  title: "OutMazed® Design — Step Inside | Interior & Exterior Design + Build, Dubai",
   description:
-    "Luxury interior design, turnkey renovations, pools & landscape, fit-out & joinery and project management — design & build under one roof across the UAE.",
+    "Luxury interior design, turnkey renovations, pools & landscape, fit-out & joinery and project management — design & build under one roof across the UAE. Step inside our spaces in 360°.",
 };
 
 export default function RootLayout({

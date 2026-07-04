@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Services from "@/components/Services";
+import StepInside from "@/components/StepInside";
 import Stats from "@/components/Stats";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <Services />
+      <StepInside />
       <Stats />
 
       <section
