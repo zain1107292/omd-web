@@ -5,6 +5,24 @@
   overflow: hidden;
 }
 
+/* media wrapper — scaled by the scroll push-in */
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* dark veil that closes over the hero as you scroll out */
+.fadeout {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--ink);
+  opacity: 0;
+}
+
 /* WebGL canvas + fallback */
 .canvas {
   position: absolute;

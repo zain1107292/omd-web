@@ -3,8 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HERO } from "@/lib/content";
 import s from "./Hero.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Mode = "interior" | "exterior";
 
@@ -75,6 +78,9 @@ void main(){
 type TexInfo = { tex: THREE.Texture; w: number; h: number };
 
 export default function Hero() {
+  const rootRef = useRef<HTMLElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const fadeRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const curRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
@@ -247,6 +253,38 @@ export default function Hero() {
     }
   }, [mode]);
 
+  // scroll cinema — pin the hero, push the camera in, let the type drift apart
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !rootRef.current) return;
+
+    const words = rootRef.current.querySelectorAll(`.${s.copy} .line-mask`);
+    const tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: rootRef.current,
+        start: "top top",
+        end: "+=110%",
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1,
+      },
+    });
+    tl.to(mediaRef.current, { scale: 1.22, transformOrigin: "50% 42%" }, 0)
+      .to(words, { yPercent: -46, opacity: 0, stagger: 0.06, ease: "power1.in" }, 0.05)
+      .to(
+        [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`],
+        { opacity: 0, y: -18, stagger: 0.03, ease: "power1.in" },
+        0
+      )
+      .to(fadeRef.current, { opacity: 1 }, 0.35);
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, []);
+
   // entrance + custom cursor + magnetic CTA
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -323,12 +361,15 @@ export default function Hero() {
   const total = IMAGES[mode].length;
 
   return (
-    <section className={`${s.hero} grain`}>
-      <canvas ref={canvasRef} className={s.canvas} />
-      {!webglOk && (
-        <div className={s.fallback} style={{ backgroundImage: `url(${IMAGES[mode][index]})` }} />
-      )}
+    <section ref={rootRef} className={`${s.hero} grain`}>
+      <div ref={mediaRef} className={s.media}>
+        <canvas ref={canvasRef} className={s.canvas} />
+        {!webglOk && (
+          <div className={s.fallback} style={{ backgroundImage: `url(${IMAGES[mode][index]})` }} />
+        )}
+      </div>
       <div className={s.scrim} />
+      <div ref={fadeRef} className={s.fadeout} />
 
       <div className={s.shell}>
         <nav className={s.nav}>

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Dust from "./Dust";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -36,10 +37,11 @@ export default function Intro() {
     <section
       ref={root}
       id="about"
-      className="relative px-[clamp(22px,5vw,72px)] py-[clamp(90px,16vh,200px)] grain"
+      className="relative overflow-hidden px-[clamp(22px,5vw,72px)] py-[clamp(90px,16vh,200px)] grain"
     >
-      <span className="eyebrow">What we do</span>
-      <p className="mt-8 max-w-[20ch] sm:max-w-[26ch] font-[family-name:var(--font-display)] font-semibold leading-[1.08] tracking-[-0.02em] text-[clamp(28px,4.6vw,68px)]">
+      <Dust />
+      <span className="eyebrow relative z-[1]">What we do</span>
+      <p className="relative z-[1] mt-8 max-w-[20ch] sm:max-w-[26ch] font-[family-name:var(--font-display)] font-semibold leading-[1.08] tracking-[-0.02em] text-[clamp(28px,4.6vw,68px)]">
         {STATEMENT.split(" ").map((w, i) => (
           <span
             key={i}
