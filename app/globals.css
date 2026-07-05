@@ -10,6 +10,7 @@
   --copper: #c98a3c;
   --sage: #8a9a82;
   --line: rgba(236, 227, 216, 0.13);
+  --accent: #f47a57; /* shifts warm(interior) ↔ copper(exterior) via Hero toggle */
 }
 
 @theme inline {
