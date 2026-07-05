@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Archivo, Hanken_Grotesk, Space_Mono } from "next/font/google";
+import { Archivo, Hanken_Grotesk, Space_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const display = Archivo({
   variable: "--font-display",
@@ -31,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable} antialiased`}
+      className={cn("antialiased", display.variable, body.variable, mono.variable, "font-sans", geist.variable)}
     >
       <body>
         <SmoothScroll>{children}</SmoothScroll>
