@@ -90,6 +90,21 @@ export default function Hero() {
   const [mode, setMode] = useState<Mode>("interior");
   const [index, setIndex] = useState(0);
   const [webglOk, setWebglOk] = useState(true);
+  const [clock, setClock] = useState("");
+  const [entranceDone, setEntranceDone] = useState(false);
+
+  // live Dubai time — the "local time" chip (Lumora-style utility detail)
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Dubai",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const tick = () => setClock(fmt.format(new Date()));
+    tick();
+    const id = setInterval(tick, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   const modeRef = useRef<Mode>("interior");
   const ctrl = useRef<{ goTo: (url: string) => void; ready: boolean; busy: boolean }>({
@@ -253,10 +268,12 @@ export default function Hero() {
     }
   }, [mode]);
 
-  // scroll cinema — pin the hero, push the camera in, let the type drift apart
+  // scroll cinema — pin the hero, push the camera in, let the type drift apart.
+  // Waits for the entrance to finish: a scrubbed .to() records its start value on
+  // first render, so building it mid-entrance would freeze everything at opacity 0.
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !rootRef.current) return;
+    if (reduce || !entranceDone || !rootRef.current) return;
 
     const words = rootRef.current.querySelectorAll(`.${s.copy} .line-mask`);
     const tl = gsap.timeline({
@@ -273,23 +290,28 @@ export default function Hero() {
     tl.to(mediaRef.current, { scale: 1.22, transformOrigin: "50% 42%" }, 0)
       .to(words, { yPercent: -46, opacity: 0, stagger: 0.06, ease: "power1.in" }, 0.05)
       .to(
-        [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`],
+        [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`, `.${s.tourCard}`],
         { opacity: 0, y: -18, stagger: 0.03, ease: "power1.in" },
         0
       )
+      .to(`.${s.wordmark}`, { yPercent: 30, opacity: 0, ease: "power1.in" }, 0.1)
       .to(fadeRef.current, { opacity: 1 }, 0.35);
 
     return () => {
       tl.scrollTrigger?.kill();
       tl.kill();
     };
-  }, []);
+  }, [entranceDone]);
 
   // entrance + custom cursor + magnetic CTA
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.35 });
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+      delay: 0.35,
+      onComplete: () => setEntranceDone(true),
+    });
     tl.from(`.${s.nav} > *`, { y: -14, opacity: 0, duration: 0.7, stagger: 0.08 }, 0)
       .from(`.${s.eyebrow}`, { opacity: 0, y: 14, duration: 0.7 }, 0.5)
       .fromTo(
@@ -301,9 +323,14 @@ export default function Hero() {
       .from(`.${s.sub}`, { opacity: 0, y: 16, duration: 0.8 }, 1.1)
       .from(`.${s.cta}`, { opacity: 0, y: 18, duration: 0.8 }, 1.25)
       .from(`.${s.toggleWrap}`, { opacity: 0, y: 18, duration: 0.7 }, 1.35)
+      .from(`.${s.tourCard}`, { opacity: 0, x: 22, duration: 0.8 }, 1.3)
       .from(`.${s.rail}`, { opacity: 0, duration: 0.7 }, 1.45);
+    const killEntrance = () => {
+      // revert so a StrictMode remount re-runs .from() against clean values
+      tl.revert();
+    };
 
-    if (reduce || !window.matchMedia("(min-width: 981px)").matches) return;
+    if (reduce || !window.matchMedia("(min-width: 981px)").matches) return killEntrance;
 
     // custom cursor
     const cur = curRef.current!;
@@ -349,6 +376,7 @@ export default function Hero() {
     cta?.addEventListener("mouseleave", outCta);
 
     return () => {
+      killEntrance();
       cancelAnimationFrame(rafC);
       window.removeEventListener("mousemove", move);
       cta?.removeEventListener("mousemove", onCta);
@@ -369,6 +397,9 @@ export default function Hero() {
         )}
       </div>
       <div className={s.scrim} />
+      <div className={s.wordmark} aria-hidden>
+        OUTMAZED
+      </div>
       <div ref={fadeRef} className={s.fadeout} />
 
       <div className={s.shell}>
@@ -382,7 +413,19 @@ export default function Hero() {
             <a href="#about" data-hov>Studio</a>
             <a href="#contact" data-hov>Contact</a>
           </div>
+          <div className={s.clockChip} suppressHydrationWarning>
+            <i /> Dubai&nbsp;<b>{clock}</b>
+          </div>
         </nav>
+
+        <a href="#projects" className={s.tourCard} data-hov>
+          <span className={s.tourBadge}>
+            <i /> 360°
+          </span>
+          <span className={s.tourLabel}>Live walkthroughs</span>
+          <span className={s.tourTitle}>Step inside our finished projects</span>
+          <span className={s.tourGo}>Explore →</span>
+        </a>
 
         <div className={s.stage}>
           <span className={`${s.eyebrow} eyebrow`}>
