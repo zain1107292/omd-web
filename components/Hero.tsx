@@ -287,15 +287,22 @@ export default function Hero() {
         anticipatePin: 1,
       },
     });
-    tl.to([canvasRef.current, `.${s.fallback}`], { scale: 1.22, transformOrigin: "50% 42%" }, 0)
-      .to(words, { yPercent: -46, opacity: 0, stagger: 0.06, ease: "power1.in" }, 0.05)
+    const desk2 = window.matchMedia("(min-width: 861px)").matches;
+    const CLIP_FULL = "inset(0% 0% 0% 0% round 0px 0px 0px 0px)";
+    const CLIP_PORTAL2 = desk2
+      ? "inset(11% 6% 10% 52% round 999px 999px 18px 18px)"
+      : "inset(48% 7% 10% 7% round 999px 999px 18px 18px)";
+    gsap.set(mediaRef.current, { clipPath: CLIP_PORTAL2 });
+    // walk through the door: text steps aside, the arch swallows the viewport, camera pushes in
+    tl.to(words, { yPercent: -40, opacity: 0, stagger: 0.05, ease: "power1.in", duration: 0.3 }, 0)
       .to(
-        [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`, `.${s.tourCard}`],
-        { opacity: 0, y: -18, stagger: 0.03, ease: "power1.in" },
+        [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`, `.${s.wordmark}`],
+        { opacity: 0, y: -16, stagger: 0.025, ease: "power1.in", duration: 0.3 },
         0
       )
-      .to(`.${s.wordmark}`, { yPercent: 30, opacity: 0, ease: "power1.in" }, 0.1)
-      .to(fadeRef.current, { opacity: 1 }, 0.35);
+      .to(mediaRef.current, { clipPath: CLIP_FULL, ease: "power2.inOut", duration: 0.5 }, 0.14)
+      .to([canvasRef.current, `.${s.fallback}`], { scale: 1.18, transformOrigin: "50% 46%", duration: 0.75 }, 0.2)
+      .to(fadeRef.current, { opacity: 1, duration: 0.22 }, 0.8);
 
     return () => {
       tl.scrollTrigger?.kill();
@@ -312,11 +319,18 @@ export default function Hero() {
       delay: 0.35,
       onComplete: () => setEntranceDone(true),
     });
-    // the door opens — arch reveals from a vertical slit (after the loader lifts)
+    // the door opens — portrait arch reveals from a slit (after the loader lifts)
+    const desk = window.matchMedia("(min-width: 861px)").matches;
+    const CLIP_SLIT = desk
+      ? "inset(40% 26% 34% 64% round 999px 999px 18px 18px)"
+      : "inset(62% 30% 24% 30% round 999px 999px 18px 18px)";
+    const CLIP_PORTAL = desk
+      ? "inset(11% 6% 10% 52% round 999px 999px 18px 18px)"
+      : "inset(48% 7% 10% 7% round 999px 999px 18px 18px)";
     tl.fromTo(
       mediaRef.current,
-      { clipPath: "inset(42% 34% 0% 34% round 360px 360px 0 0)" },
-      { clipPath: "inset(0% 0% 0% 0% round 360px 360px 0 0)", duration: 1.5, ease: "expo.inOut" },
+      { clipPath: CLIP_SLIT },
+      { clipPath: CLIP_PORTAL, duration: 1.5, ease: "expo.inOut" },
       1.15
     )
       .from(`.${s.nav} > *`, { y: -14, opacity: 0, duration: 0.7, stagger: 0.08 }, 0)
@@ -330,7 +344,6 @@ export default function Hero() {
       .from(`.${s.sub}`, { opacity: 0, y: 16, duration: 0.8 }, 2.45)
       .from(`.${s.cta}`, { opacity: 0, y: 18, duration: 0.8 }, 2.6)
       .from(`.${s.toggleWrap}`, { opacity: 0, y: 18, duration: 0.7 }, 2.7)
-      .from(`.${s.tourCard}`, { opacity: 0, x: 22, duration: 0.8 }, 2.75)
       .from(`.${s.rail}`, { opacity: 0, duration: 0.7 }, 2.85);
     const killEntrance = () => {
       // revert so a StrictMode remount re-runs .from() against clean values
@@ -402,8 +415,8 @@ export default function Hero() {
         {!webglOk && (
           <div className={s.fallback} style={{ backgroundImage: `url(${IMAGES[mode][index]})` }} />
         )}
+        <div className={s.scrim} />
       </div>
-      <div className={s.scrim} />
       <div className={s.wordmark} aria-hidden>
         OUTMAZED
       </div>
@@ -425,15 +438,6 @@ export default function Hero() {
             <i /> Dubai&nbsp;<b>{clock}</b>
           </div>
         </nav>
-
-        <a href="#projects" className={s.tourCard} data-hov>
-          <span className={s.tourBadge}>
-            <i /> 360°
-          </span>
-          <span className={s.tourLabel}>Live walkthroughs</span>
-          <span className={s.tourTitle}>Step inside our finished projects</span>
-          <span className={s.tourGo}>Explore →</span>
-        </a>
 
         <div className={s.stage}>
           <span className={`${s.eyebrow} eyebrow`}>
