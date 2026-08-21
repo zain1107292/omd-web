@@ -35,10 +35,10 @@ export default function Services() {
       <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
         <div>
           <span className="eyebrow">Room 03 — The Workshop</span>
-          <h2 className="mt-4 font-[family-name:var(--font-display)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(34px,5.4vw,84px)]">
+          <h2 className="mt-4 font-[family-name:var(--font-serif)] font-light leading-[1] tracking-[-0.01em] text-[clamp(34px,5.6vw,88px)]">
             Everything,
             <br />
-            <em className="font-[family-name:var(--font-display)] font-medium text-[var(--terra)]">
+            <em className="font-[family-name:var(--font-serif)] italic font-light text-[var(--terra)]">
               under one roof.
             </em>
           </h2>
@@ -59,7 +59,7 @@ export default function Services() {
             <span className="font-[family-name:var(--font-display)] text-[var(--copper)] text-sm">
               {sv.n}
             </span>
-            <h3 className="font-[family-name:var(--font-display)] font-semibold text-[clamp(20px,2.6vw,38px)] leading-tight transition-transform duration-500 group-hover:translate-x-2 group-hover:text-[var(--terra)]">
+            <h3 className="font-[family-name:var(--font-serif)] font-normal text-[clamp(20px,2.6vw,38px)] leading-tight transition-transform duration-500 group-hover:translate-x-2 group-hover:text-[var(--terra)]">
               {sv.title}
             </h3>
             <p className="col-span-2 md:col-span-1 text-[var(--muted)] text-sm font-light leading-relaxed max-w-[460px]">

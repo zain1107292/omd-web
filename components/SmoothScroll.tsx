@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-if (typeof window !== "undefined") (window as unknown as { ST: typeof ScrollTrigger }).ST = ScrollTrigger; // dev diagnostics
 
 export default function SmoothScroll({
   children,

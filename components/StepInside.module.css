@@ -131,8 +131,8 @@
   margin-top: 18px;
 }
 .metaName {
-  font-family: var(--font-display);
-  font-weight: 700;
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
   font-size: clamp(20px, 2.4vw, 30px);
   letter-spacing: -0.01em;
 }

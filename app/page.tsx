@@ -28,12 +28,23 @@ export default function Home() {
             Collect the keys.
           </em>
         </h2>
-        <a
-          href="mailto:info@outmazeddesign.com"
-          className="inline-flex items-center gap-3 mt-12 bg-[var(--terra)] text-[#1c0e07] px-9 py-5 rounded-full text-sm font-medium"
-        >
-          Book a site visit →
-        </a>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="mailto:info@outmazeddesign.com?subject=Site%20visit%20—%20OutMazed%20Design"
+            className="inline-flex items-center gap-3 bg-[var(--terra)] text-[#1c0e07] px-9 py-5 rounded-full text-sm font-medium"
+          >
+            Book a site visit →
+          </a>
+          <a
+            href="tel:+97143399683"
+            className="inline-flex items-center gap-3 border border-[var(--line)] px-9 py-5 rounded-full text-sm text-[var(--cream)]"
+          >
+            Call the studio
+          </a>
+        </div>
+        <p className="mt-10 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] uppercase text-[var(--muted)]">
+          Studio — Al Quoz, Dubai · Sun–Fri 9:00–18:00 GST
+        </p>
         <footer className="mt-24 pt-8 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4 text-xs text-[var(--muted)] tracking-wider">
           <span>© 2026 OutMazed® Design — Dubai, UAE</span>
           <span>info@outmazeddesign.com · +971 (0) 4 339 9683</span>

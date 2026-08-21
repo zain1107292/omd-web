@@ -11,7 +11,7 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   { slug: "miracle", name: "Miracle", scope: "Villa · Design & Build", banner: U + "25042024142601_Project_Detail_Miracle_jpg_51badff960.jpg", thumb: U + "16052024145333_Project_Miracle_png_05f9174b2c.png" },
-  { slug: "solace", name: "Solace", scope: "Villa · Turnkey Renovation", banner: U + "15082024153520_Ziniamainweb_Banner_png_ce60e2b4fa.png", thumb: U + "15082024153258_Project_Solace_zinnia_Thumbnail_png_9caf418fbd.png" },
+  { slug: "solace", name: "Solace", scope: "Villa · Turnkey Renovation", banner: U + "15082024153258_Project_Solace_zinnia_Thumbnail_png_9caf418fbd.png", thumb: U + "15082024153520_Ziniamainweb_Banner_png_ce60e2b4fa.png" },
   { slug: "mudon", name: "Mudon", scope: "Villa · Interior + Exterior", banner: U + "Mudon_Project_Banner_web_view_b908914caa.jpg", thumb: U + "14082024210619_Mudon_png_4884617dee.png" },
   { slug: "murano", name: "Murano", scope: "Residence · Fit-Out", banner: U + "29052024161810_Murano_Projetc_Page_Web_Banner_jpg_295a170973.jpg", thumb: U + "29052024162516_Project_Murano_Thumbnail_jpg_6f8552c59e.jpg" },
   { slug: "aldea", name: "Aldea", scope: "Villa · Design & Build", banner: U + "24052024141235_Aldea_Project_Page_Web_Banner_jpg_3471fd39f3.jpg", thumb: U + "24052024144402_Project_Aldea_Thumbnail_png_86625383ab.png" },

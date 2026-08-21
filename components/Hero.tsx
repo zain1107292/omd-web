@@ -287,7 +287,7 @@ export default function Hero() {
         anticipatePin: 1,
       },
     });
-    tl.to(mediaRef.current, { scale: 1.22, transformOrigin: "50% 42%" }, 0)
+    tl.to([canvasRef.current, `.${s.fallback}`], { scale: 1.22, transformOrigin: "50% 42%" }, 0)
       .to(words, { yPercent: -46, opacity: 0, stagger: 0.06, ease: "power1.in" }, 0.05)
       .to(
         [`.${s.eyebrow}`, `.${s.sub}`, `.${s.cta}`, `.${s.toggleWrap}`, `.${s.rail}`, `.${s.nav}`, `.${s.tourCard}`],
@@ -408,7 +408,8 @@ export default function Hero() {
             OUT<b>MAZED</b> DESIGN
           </div>
           <div className={s.navLinks}>
-            <a href="#projects" data-hov>Projects</a>
+            <a href="#work" data-hov>Work</a>
+            <a href="#projects" data-hov>360° Tours</a>
             <a href="#services" data-hov>Services</a>
             <a href="#about" data-hov>Studio</a>
             <a href="#contact" data-hov>Contact</a>
