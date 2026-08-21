@@ -24,6 +24,7 @@
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
   --font-heading: var(--font-display);
   --font-sans: var(--font-body);
   --color-sidebar-ring: var(--sidebar-ring);

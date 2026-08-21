@@ -10,7 +10,7 @@
 }
 .title {
   margin: 18px 0 0;
-  font-family: var(--font-display);
+  font-family: var(--font-serif), serif;
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 0.98;
@@ -19,6 +19,7 @@
 }
 .dim > span {
   color: var(--muted);
+  font-style: italic;
 }
 
 /* ---- editorial flow ---- */
@@ -83,7 +84,7 @@
   transition: color 0.6s ease;
 }
 .name {
-  font-family: var(--font-display);
+  font-family: var(--font-serif), serif;
   font-weight: 400;
   font-size: clamp(1.2rem, 2vw, 1.7rem);
   letter-spacing: -0.01em;
@@ -103,7 +104,7 @@
   position: absolute;
   left: clamp(22px, 5vw, 64px);
   bottom: 72px;
-  font-family: var(--font-display);
+  font-family: var(--font-serif), serif;
   font-weight: 300;
   font-size: clamp(3.4rem, 9vw, 9rem);
   letter-spacing: -0.02em;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Hanken_Grotesk, Space_Mono } from "next/font/google";
+import { Archivo, Fraunces, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,12 @@ const display = Archivo({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+const serif = Fraunces({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
 });
 const body = Hanken_Grotesk({
   variable: "--font-body",
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("antialiased", display.variable, body.variable, mono.variable)}
+      className={cn("antialiased", display.variable, serif.variable, body.variable, mono.variable)}
     >
       <body>
         <SmoothScroll>{children}</SmoothScroll>

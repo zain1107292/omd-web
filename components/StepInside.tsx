@@ -42,8 +42,24 @@ export default function StepInside() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: root.current, start: "top 78%" },
       });
+      // stepping up to the glass — stage scales in on a short scrub
+      gsap.fromTo(
+        `.${s.viewer}`,
+        { scale: 0.94, transformOrigin: "50% 60%" },
+        {
+          scale: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: `.${s.viewerWrap}`,
+            start: "top 85%",
+            end: "top 30%",
+            scrub: 0.5,
+          },
+        }
+      );
       gsap.from(`.${s.proj}`, {
         x: 24,
         opacity: 0,
