@@ -1,4 +1,6 @@
 import Hero from "@/components/Hero";
+import Loader from "@/components/Loader";
+import Work from "@/components/Work";
 import Intro from "@/components/Intro";
 import Services from "@/components/Services";
 import StepInside from "@/components/StepInside";
@@ -7,8 +9,10 @@ import Stats from "@/components/Stats";
 export default function Home() {
   return (
     <main>
+      <Loader />
       <Hero />
       <Intro />
+      <Work />
       <Services />
       <StepInside />
       <Stats />
