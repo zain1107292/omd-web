@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PROJECTS } from "@/lib/projects";
+import { scrollBus } from "@/lib/scrollBus";
 import s from "./Work.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -20,27 +21,44 @@ export default function Work() {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduce) return;
 
-      // each frame: image drifts slower than scroll (parallax) + soft reveal
+      // CONTINUOUS scroll cinema (Codrops recipe): everything scrubbed, nothing fire-once.
       gsap.utils.toArray<HTMLElement>(`.${s.frame}`).forEach((frame) => {
         const img = frame.querySelector("img");
+        const media = frame.querySelector(`.${s.media}`);
+        // image drifts slower than scroll + settles from a zoom as it crosses the viewport
         gsap.fromTo(
           img,
-          { yPercent: -10, scale: 1.12 },
+          { yPercent: -9, scale: 1.28 },
           {
-            yPercent: 10,
-            scale: 1.12,
+            yPercent: 9,
+            scale: 1.06,
             ease: "none",
             scrollTrigger: { trigger: frame, start: "top bottom", end: "bottom top", scrub: true },
           }
         );
-        gsap.from(frame, {
-          y: 70,
-          opacity: 0,
-          duration: 1.1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: frame, start: "top 88%" },
-        });
+        // the frame's mask opens with your finger — scrubbed, reversible
+        gsap.fromTo(
+          media,
+          { clipPath: "inset(14% 8% 14% 8%)" },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            ease: "none",
+            scrollTrigger: { trigger: frame, start: "top 96%", end: "top 40%", scrub: 0.4 },
+          }
+        );
       });
+
+      // velocity skew — the page bends with scroll speed, settles at rest
+      const medias = gsap.utils.toArray<HTMLElement>(`.${s.media}`);
+      const skewTo = medias.map((m) => gsap.quickTo(m, "skewY", { duration: 0.5, ease: "power3.out" }));
+      const clamp = gsap.utils.clamp(-4.5, 4.5);
+      const tick = () => {
+        const sk = clamp(scrollBus.v * 0.045);
+        skewTo.forEach((fn) => fn(sk));
+      };
+      gsap.ticker.add(tick);
+      const cleanup = () => gsap.ticker.remove(tick);
+      window.addEventListener("beforeunload", cleanup);
 
       // headline sweep
       gsap.from(`.${s.head} .line-mask > span`, {

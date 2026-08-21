@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Loader from "@/components/Loader";
 import Work from "@/components/Work";
+import Marquee from "@/components/Marquee";
 import Intro from "@/components/Intro";
 import Services from "@/components/Services";
 import StepInside from "@/components/StepInside";
@@ -12,6 +13,7 @@ export default function Home() {
       <Loader />
       <Hero />
       <Intro />
+      <Marquee />
       <Work />
       <Services />
       <StepInside />

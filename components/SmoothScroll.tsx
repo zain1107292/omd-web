@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollBus } from "@/lib/scrollBus";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,7 +24,10 @@ export default function SmoothScroll({
       touchMultiplier: 1.4,
     });
 
-    lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", (e: { velocity: number }) => {
+      scrollBus.v = e.velocity;
+      ScrollTrigger.update();
+    });
 
     // re-measure triggers once everything (fonts, images, loader exit) settles
     const refresh = () => ScrollTrigger.refresh();

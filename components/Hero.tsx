@@ -312,19 +312,26 @@ export default function Hero() {
       delay: 0.35,
       onComplete: () => setEntranceDone(true),
     });
-    tl.from(`.${s.nav} > *`, { y: -14, opacity: 0, duration: 0.7, stagger: 0.08 }, 0)
-      .from(`.${s.eyebrow}`, { opacity: 0, y: 14, duration: 0.7 }, 0.5)
+    // the door opens — arch reveals from a vertical slit (after the loader lifts)
+    tl.fromTo(
+      mediaRef.current,
+      { clipPath: "inset(42% 34% 0% 34% round 360px 360px 0 0)" },
+      { clipPath: "inset(0% 0% 0% 0% round 360px 360px 0 0)", duration: 1.5, ease: "expo.inOut" },
+      1.15
+    )
+      .from(`.${s.nav} > *`, { y: -14, opacity: 0, duration: 0.7, stagger: 0.08 }, 0)
+      .from(`.${s.eyebrow}`, { opacity: 0, y: 14, duration: 0.7 }, 1.9)
       .fromTo(
         `.${s.copy} .line-mask > span`,
         { yPercent: 115 },
-        { yPercent: 0, duration: 1, stagger: 0.09, ease: "power4.out" },
-        0.6
+        { yPercent: 0, duration: 1.1, stagger: 0.09, ease: "expo.out" },
+        2.0
       )
-      .from(`.${s.sub}`, { opacity: 0, y: 16, duration: 0.8 }, 1.1)
-      .from(`.${s.cta}`, { opacity: 0, y: 18, duration: 0.8 }, 1.25)
-      .from(`.${s.toggleWrap}`, { opacity: 0, y: 18, duration: 0.7 }, 1.35)
-      .from(`.${s.tourCard}`, { opacity: 0, x: 22, duration: 0.8 }, 1.3)
-      .from(`.${s.rail}`, { opacity: 0, duration: 0.7 }, 1.45);
+      .from(`.${s.sub}`, { opacity: 0, y: 16, duration: 0.8 }, 2.45)
+      .from(`.${s.cta}`, { opacity: 0, y: 18, duration: 0.8 }, 2.6)
+      .from(`.${s.toggleWrap}`, { opacity: 0, y: 18, duration: 0.7 }, 2.7)
+      .from(`.${s.tourCard}`, { opacity: 0, x: 22, duration: 0.8 }, 2.75)
+      .from(`.${s.rail}`, { opacity: 0, duration: 0.7 }, 2.85);
     const killEntrance = () => {
       // revert so a StrictMode remount re-runs .from() against clean values
       tl.revert();

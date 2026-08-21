@@ -1,0 +1,23 @@
+.band {
+  overflow: hidden;
+  padding: clamp(28px, 5vh, 60px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--ink-2);
+}
+.track {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+.track span {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(56px, 8.5vw, 130px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #d5c9b2; /* embossed into the plaster */
+  text-shadow: 0 1px 0 rgba(255, 252, 245, 0.55), 0 -1px 0 rgba(38, 25, 14, 0.18);
+  padding-right: 0.35em;
+}
