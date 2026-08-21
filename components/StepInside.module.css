@@ -53,11 +53,11 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 18px;
+  border-radius: min(7vw, 110px) min(7vw, 110px) 14px 14px; /* arched doorway */
   overflow: hidden;
   background: #0a0807;
   border: 1px solid var(--line);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 30px 70px rgba(38, 25, 14, 0.28);
 }
 .viewer iframe {
   position: absolute;

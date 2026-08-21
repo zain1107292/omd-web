@@ -77,6 +77,7 @@ export default function StepInside() {
   return (
     <section ref={root} id="projects" className={s.section}>
       <div className={s.head}>
+        <span className="eyebrow">Room 04 — Step Inside</span>
         <h2 className={s.title}>
           Step <em>inside</em> the spaces we transform.
         </h2>

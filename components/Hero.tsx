@@ -18,8 +18,8 @@ const ACCENT: Record<Mode, string> = {
 };
 
 const COPY: Record<Mode, { a: string; b: string }> = {
-  interior: { a: "We shape the rooms", b: "you were meant to live in." },
-  exterior: { a: "We shape the grounds", b: "you were meant to arrive at." },
+  interior: { a: "Every home begins", b: "at a door." },
+  exterior: { a: "Every arrival begins", b: "at the gate." },
 };
 
 const IMAGES: Record<Mode, string[]> = {
@@ -429,7 +429,7 @@ export default function Hero() {
 
         <div className={s.stage}>
           <span className={`${s.eyebrow} eyebrow`}>
-            Interior &amp; Exterior — Design &amp; Build · Dubai
+            Room 00 — The Door · Design &amp; Build · Dubai
           </span>
           <h1 ref={copyRef} className={s.copy}>
             <span className="line-mask">
@@ -440,11 +440,11 @@ export default function Hero() {
             </span>
           </h1>
           <p className={s.sub}>
-            One studio, from first sketch to final key — crafting the spaces you live in
-            and the grounds you arrive at.
+            Step through ours — twenty Dubai homes designed and built under one
+            roof, every one of them open for you to walk inside.
           </p>
           <a ref={ctaRef} href="#projects" className={s.cta} data-hov>
-            <span>Step inside our work</span>
+            <span>Walk through our homes</span>
             <i>↓</i>
           </a>
         </div>

@@ -57,7 +57,7 @@ export default function Work() {
   return (
     <section ref={root} id="work" className={s.section}>
       <header className={s.head}>
-        <span className="eyebrow">Selected work</span>
+        <span className="eyebrow">Room 02 — The Gallery</span>
         <h2 className={s.title}>
           <span className="line-mask"><span>Spaces we have</span></span>
           <span className={`line-mask ${s.dim}`}><span>already transformed.</span></span>

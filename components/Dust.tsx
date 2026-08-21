@@ -46,7 +46,7 @@ export default function Dust({ count = 260 }: { count?: number }) {
     const mat = new THREE.ShaderMaterial({
       transparent: true,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       uniforms: { uTime: { value: 0 } },
       vertexShader: `
         attribute float aSize;
@@ -68,8 +68,8 @@ export default function Dust({ count = 260 }: { count?: number }) {
         varying float vFade;
         void main(){
           float r = length(gl_PointCoord - 0.5);
-          float a = smoothstep(0.5, 0.08, r) * vFade * 0.55;
-          gl_FragColor = vec4(vec3(0.96, 0.55, 0.34), a);   // warm amber
+          float a = smoothstep(0.5, 0.08, r) * vFade * 0.34;
+          gl_FragColor = vec4(vec3(0.72, 0.33, 0.16), a);  // burnt terracotta motes on plaster
         }`,
     });
     scene.add(new THREE.Points(geo, mat));

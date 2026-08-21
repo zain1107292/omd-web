@@ -34,7 +34,7 @@ export default function Services() {
     >
       <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
         <div>
-          <span className="eyebrow">Our services</span>
+          <span className="eyebrow">Room 03 — The Workshop</span>
           <h2 className="mt-4 font-[family-name:var(--font-display)] font-extrabold leading-[0.95] tracking-[-0.02em] text-[clamp(34px,5.4vw,84px)]">
             Everything,
             <br />

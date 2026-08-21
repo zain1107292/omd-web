@@ -43,7 +43,7 @@ export default function Stats() {
       ref={root}
       className="relative px-[clamp(22px,5vw,72px)] py-[clamp(70px,12vh,150px)] border-t border-[var(--line)] bg-[linear-gradient(180deg,var(--ink),var(--ink-2))]"
     >
-      <span className="eyebrow">Track records</span>
+      <span className="eyebrow">Room 05 — The Ledger</span>
       <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
         {STATS.map((st) => (
           <div key={st.label} className="stat-col">
